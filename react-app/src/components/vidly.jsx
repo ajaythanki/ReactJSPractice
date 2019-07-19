@@ -15,8 +15,7 @@ class Vidly extends Component {
 
   handleDelete = () => {
     this.setState({ movies: this.state.movies });
-    this.setState({ count: Object.keys(this.getMovieList()).length });
-    console.log(this.state.count);
+    // this.setState({ count: Object.keys(this.getMovieList()).length });
   };
 
   getMovieList = () => {
@@ -42,6 +41,16 @@ class Vidly extends Component {
   render() {
     return (
       <main className="container">
+        {Object.keys(this.getMovieList()).length === 0 ? (
+          <h3>Ther are no movies in the database</h3>
+        ) : (
+          <h3>
+            Showing
+            {` ${
+              Object.keys(this.getMovieList()).length
+            } movies in the database `}
+          </h3>
+        )}
         <table className="table">
           <thead>
             <tr>
