@@ -4,7 +4,7 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
-import Counter from "./components/counter";
+// import Counter from "./components/counter";
 import Vidly from "./components/vidly";
 ReactDOM.render(<Vidly />, document.getElementById("root"));
 serviceWorker.unregister();

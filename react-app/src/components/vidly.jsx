@@ -1,25 +1,38 @@
 import React, { Component } from "react";
-import { genres, getGenres } from "../services/fakeMovieService";
+// import { genres, getGenres } from "../services/fakeMovieService";
 import {
   deleteMovie,
-  saveMovie,
-  getMovie,
+  // saveMovie,
+  // getMovie,
   getMovies
 } from "../services/fakeMovieService";
 
 class Vidly extends Component {
-  state = { count: 0 };
+  state = {
+    count: 0,
+    movies: this.getMovieList
+  };
+
+  handleDelete = () => {
+    this.setState({ movies: this.state.movies });
+    this.setState({ count: Object.keys(this.getMovieList()).length });
+    console.log(this.state.count);
+  };
 
   getMovieList = () => {
     const item = getMovies();
+
     return item.map(data => (
-      <tr>
-        <td key={data._id}>{data.title}</td>
-        <td>{data.genre.name}</td>
-        <td>{data.numberInStock}</td>
-        <td>{data.dailyRentalRate}</td>
+      <tr key={data._id}>
+        <td key={data.title}>{data.title}</td>
+        <td key={data.genre._id}>{data.genre.name}</td>
+        <td key={data.numberInStock}>{data.numberInStock}</td>
+        <td key={data.dailyRentalRate}>{data.dailyRentalRate}</td>
         <td>
-          <button className="warning" value="Delete">
+          <button
+            onClick={() => this.handleDelete(deleteMovie(data._id))}
+            className="btn btn-secondary"
+          >
             Delete
           </button>
         </td>
@@ -43,16 +56,6 @@ class Vidly extends Component {
         </table>
       </main>
     );
-  }
-  getBadgeClasses() {
-    let classes = "badge m-2 badge-";
-    classes += this.state.count === 0 ? "warning" : "primary";
-    return classes;
-  }
-
-  formatCount() {
-    const { count } = this.state;
-    return count === 0 ? "Zero" : count;
   }
 }
 
