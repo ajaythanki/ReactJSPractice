@@ -1,56 +1,20 @@
 import React, { Component } from "react";
-// import { genres, getGenres } from "../services/fakeMovieService";
-import {
-  deleteMovie,
-  // saveMovie,
-  // getMovie,
-  getMovies
-} from "../services/fakeMovieService";
+import { getMovies } from "../services/fakeMovieService";
 
 class Vidly extends Component {
-  state = {
-    count: 0,
-    movies: this.getMovieList
+  state = { movies: getMovies() };
+
+  handleDelete = movie => {
+    const movies = this.state.movies.filter(m => m._id !== movie._id);
+    this.setState({ movies });
   };
 
-  handleDelete = () => {
-    this.setState({ movies: this.state.movies });
-    // this.setState({ count: Object.keys(this.getMovieList()).length });
-  };
-
-  getMovieList = () => {
-    const item = getMovies();
-
-    return item.map(data => (
-      <tr key={data._id}>
-        <td key={data.title}>{data.title}</td>
-        <td key={data.genre._id}>{data.genre.name}</td>
-        <td key={data.numberInStock}>{data.numberInStock}</td>
-        <td key={data.dailyRentalRate}>{data.dailyRentalRate}</td>
-        <td>
-          <button
-            onClick={() => this.handleDelete(deleteMovie(data._id))}
-            className="btn btn-secondary"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    ));
-  };
   render() {
+    const { length: count } = this.state.movies;
+    if (count === 0) return <p>There are no movies in the database.</p>;
     return (
-      <main className="container">
-        {Object.keys(this.getMovieList()).length === 0 ? (
-          <h3>Ther are no movies in the database</h3>
-        ) : (
-          <h3>
-            Showing
-            {` ${
-              Object.keys(this.getMovieList()).length
-            } movies in the database `}
-          </h3>
-        )}
+      <React.Fragment>
+        <p>Showing {count} movies in the database.</p>
         <table className="table">
           <thead>
             <tr>
@@ -61,9 +25,26 @@ class Vidly extends Component {
               <th />
             </tr>
           </thead>
-          <tbody>{this.getMovieList()}</tbody>
+          <tbody>
+            {this.state.movies.map(movie => (
+              <tr key={movie._id}>
+                <td>{movie.title}</td>
+                <td>{movie.genre.name}</td>
+                <td>{movie.numberInStock}</td>
+                <td>{movie.dailyRentalRate}</td>
+                <td>
+                  <button
+                    onClick={() => this.handleDelete(movie)}
+                    className="btn btn-danger btn-sm"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
-      </main>
+      </React.Fragment>
     );
   }
 }
