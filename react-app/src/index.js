@@ -4,10 +4,10 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
-// import App from "./App";
-import Counters from "./components/counters";
+import App from "./App";
+// import Counters from "./components/counters";
 
-ReactDOM.render(<Counters />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
 serviceWorker.unregister();
 
 // import { Teacher } from './teacher';
