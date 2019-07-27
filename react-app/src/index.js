@@ -4,10 +4,11 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
-import App from "./App";
+// import App from "./App";
+import Vidly from "./components/vidly";
 // import Counters from "./components/counters";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<Vidly />, document.getElementById("root"));
 serviceWorker.unregister();
 
 // import { Teacher } from './teacher';
