@@ -7,4 +7,5 @@ const login = async (credentials) => {
   return response;
 };
 
-export default { login };
+const loginService = { login }
+export default loginService;

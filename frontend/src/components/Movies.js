@@ -8,11 +8,11 @@ const Movies = () => {
   if (moviesList?.length === 0)
     return <p>There are no movies in the database.</p>;
   return (
-    <div className="container flex-row text-white text-center mx-auto mt-2">
-      <p className="block text-lg font-medium mb-2">Showing {moviesList?.length} movies in the database.</p>
-      <div className="flex flex-row flex-wrap">
+    <div className="container mt-2 mx-auto">
+      <p>Showing {moviesList?.length} movies in the database.</p>
+      <div className="grid grid-cols-4 gap-2">
         {moviesList?.map((movie) => (
-          <div className="flex flex-col w-1/4" key={movie._id}>
+          <div className="grid-flow-col" key={movie._id}>
             <Card movie={movie} />
           </div>
         ))}
