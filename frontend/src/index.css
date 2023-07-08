@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-#root{
+body{
   background-image: url('./body-bg.webp');
-  min-height: 500px;
+  min-height: 800px;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;

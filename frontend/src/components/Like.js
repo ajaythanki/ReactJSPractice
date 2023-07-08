@@ -10,14 +10,14 @@ const Like = ({ liked, onClick, size="text-2xl" }) => {
     // <span className="w-fit">
       user?.token ? (
         !liked ? (
-          <FaRegHeart onClick={onClick} style={{ cursor: "pointer" }} />
+          <FaRegHeart onClick={onClick} style={{ cursor: "pointer" }} className="hover:text-blue-400"/>
         ) : (
-          <FaHeart onClick={onClick} style={{ cursor: "pointer" }} />
+          <FaHeart onClick={onClick} style={{ cursor: "pointer"}} className="text-blue-400"/>
         )
       ) : !liked ? (
-        <FaRegHeart onClick={onClick} style={{ cursor: "pointer" }} />
+        <FaRegHeart onClick={onClick} style={{ cursor: "pointer" }} className="hover:text-blue-400" />
       ) : (
-        <FaHeart onClick={onClick} style={{ cursor: "pointer" }} />
+        <FaHeart onClick={onClick} style={{ cursor: "pointer" }} className="text-blue-400"/>
       )
     // </span>
   );

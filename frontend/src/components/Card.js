@@ -16,33 +16,34 @@ const Card = ({ movie, style = {} }) => {
   )?.isLiked;
 
   return (
-    <div className="text-white w-full p-2 justify-center hover:scale-105 transition-all duration-300">
+    <div className="text-white w-full m-2 justify-center rounded-md hover:scale-105 backdrop-blur-2xl transition-all duration-300">
       <img
-        style={{ cursor: "pointer", maxHeight: 800, objectFit: "contain" }}
+        style={{ cursor: "pointer", maxHeight: 800, objectFit: "cover", borderRadius:10 }}
         src={poster_path}
-        className="movie-image"
+        className=""
         alt={title}
         onClick={() => navigate(`/movie/${movie._id}`)}
       />
-      <div className="backdrop-blur-2xl min-h-[160px] text-center">
-        <h2 className="font-bold text-center">{title}</h2>
+      <div className="min-h-[210px] text-center py-3 ">
+        <h2 className="font-bold text-2xl text-center">
+          {title.length>15 ? (title.slice(0, 25) + "...") : title}
+        </h2>
         <div className="px-2 flex justify-around">
           <div className="flex">
             Genres:
             <div className="">
               {genreIds.map((genreId, index) => {
                 return (
-                  <>
+                  <span key={genreId}>
                     <Link
-                      key={genreId}
+                      // key={genreId}
                       to={genreId === 1 ? `/` : `/movies/genre/${genreId}`}
-                      className="genre text-slate-50 hover:underline mx-2"
+                      className="genre text-slate-50 hover:underline hover:text-blue-400 mx-2"
                     >
                       {getGenre(genreId).name}
                     </Link>
                     {genreIds.length - 1 !== index ? " | " : ""}
-                  </>
-                 
+                  </span>
                 );
               })}
             </div>
@@ -53,7 +54,7 @@ const Card = ({ movie, style = {} }) => {
           <span className="rate">Votes: {vote_count}</span>
         </div>
         <button
-          className="bg-transparent border-0 my-2 text-lg font-medium"
+          className="bg-transparent border-0 my-2 text-lg font-medium hover:text-blue-400"
           onClick={() => navigate(`/movie/${movie._id}`)}
         >
           Write an Review

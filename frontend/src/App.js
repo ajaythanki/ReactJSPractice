@@ -50,7 +50,7 @@ const App = () => {
     : null;
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-ajay">
       <Menu />
       <Notification />
       <Filter />

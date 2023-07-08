@@ -10,6 +10,7 @@ import {
   mapReviewsToMovie,
 } from "../redux/movieSlice";
 import { notify } from "../redux/notificationSlice";
+import { FaPenToSquare, FaTrashCan } from "react-icons/fa6";
 
 const Movie = ({ movie }) => {
   const user = useSelector((state) => state.user);
@@ -160,20 +161,20 @@ const Movie = ({ movie }) => {
                     </strong>
                     by <small className="ml-1">{review.name}</small>
                   </span>
-                  <div>
+                  <div className="flex gap-2">
                     {review.username === user.username && (
                       <>
                         <span
-                          className="font-semibold bg-blue-400 ml-1 hover:cursor-pointer rounded py-1 px-2"
+                          className="font-semibold ml-1 text-blue-400 hover:cursor-pointer"
                           onClick={() => setReview(review.reviewText)}
                         >
-                          Edit
+                          <FaPenToSquare />
                         </span>
                         <span
-                          className="font-semibold ml-1 bg-red-400 hover:cursor-pointer rounded py-1 px-2"
+                          className="font-semibold ml-1 text-red-400 hover:cursor-pointer"
                           onClick={() => handleDelete(movie)}
                         >
-                          Delete
+                          <FaTrashCan />
                         </span>
                       </>
                     )}

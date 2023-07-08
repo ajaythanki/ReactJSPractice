@@ -235,8 +235,10 @@ export const mapLikesToMovies = (movies) => {
         dispatch(notify(`Error: ${res.data.message}`, "Error"));
       }
     } catch (error) {
-        console.log(error)
-
+      console.log(error.message)
+      if (error.message.includes("vote_count")) {
+        return;
+      }
       dispatch(setError(true));
       dispatch(notify(`Error: ${error.message}`, "Error"));
     }

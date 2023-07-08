@@ -11,7 +11,7 @@ const Filter = () => {
             <li key={genre.id}>
               <Link
                 to={genre.id === 1 ? `/` : `/movies/genre/${genre.id}`}
-                className="genre text-slate-50 hover:underline mx-2"
+                className="font-bold text-blue-200 mx-2 transition-all duration-300 hover:text-white"
               >
                 {genre.name}
               </Link>

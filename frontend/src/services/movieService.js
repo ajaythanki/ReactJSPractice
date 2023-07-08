@@ -9,12 +9,13 @@ const SEARCHAPI =
 
 const REVIEW_API_LINK = "http://localhost:8080/api/";
 
-let token = "";
-const loggedUserJSON = window.localStorage.getItem("loggedMovieAppUser");
-if (loggedUserJSON !== undefined) {
-  const user = JSON.parse(loggedUserJSON);
-  token = user?.token;
-}
+const getUserToken = () => {
+  const loggedUserJSON = window.localStorage.getItem("loggedMovieAppUser");
+  if (loggedUserJSON !== undefined) {
+    const user = JSON.parse(loggedUserJSON);
+    return user?.token;
+  }
+};
 
 const movieObj = (movie) => {
   return {
@@ -85,6 +86,7 @@ const searchMovie = async (query) => {
 const likeDislikeMovie = async (movieId, liked) => {
   try {
     console.log(movieId, liked);
+    const token = getUserToken();
     if (token) {
       const response = await axios.post(
         `${REVIEW_API_LINK}movies/like`,
@@ -122,6 +124,7 @@ const createMovieReview = async (movie, review) => {
       review: review,
     };
     console.log(reviewObj);
+    const token = getUserToken();
     if (token) {
       console.log(token);
       const response = await axios.post(
@@ -146,6 +149,7 @@ const createMovieReview = async (movie, review) => {
 const deleteReview = async (movieId) => {
   try {
     console.log(movieId);
+    const token = getUserToken();
     if (token) {
       console.log(token);
       const response = await axios.delete(

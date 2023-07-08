@@ -21,6 +21,7 @@ const LoginForm = () => {
     event.preventDefault();
     try {
       dispatch(login(username.value, password.value));
+      window.location.reload();
       dispatch(notify("Logged In Successfully...", "Success"));
       navigate(-1);
     } catch (exception) {
@@ -34,32 +35,33 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="container">
-      <div className="d-flex flex-column align-items-center mt-5">
-        <h1>Login</h1>
+    <div className="container mt-52 mx-auto text-2xl text-white">
+      <div className="flex flex-col w-fit mx-auto items-center gap-5 mt-5 p-10 backdrop-blur-xl">
+        <h1 className="font-semibold text-4xl">Login</h1>
+        <hr className="text-black w-full h-1"/>
         <form
           onSubmit={handleSubmit}
-          className="d-flex w-50 flex-column align-items-center"
+          className="flex flex-col gap-4 mx-auto"
         >
-          <div className="form-group w-100">
-            <label htmlFor="username">Username</label>
+          <div className="flex">
+            {/* <label htmlFor="username" className="w-[110px] mr-4">Username</label> */}
             <input
-              className="form-control"
+              className="text-black outline-none rounded-md px-3 py-2"
               id="username"
-              placeholder="Enter username"
+              placeholder="Username"
               {...username}
             />
           </div>
-          <div className="form-group w-100">
-            <label htmlFor="password">Password</label>
+          <div className="flex">
+            {/* <label htmlFor="password" className="w-[110px] mr-4">Password</label> */}
             <input
-              className="form-control"
+              className="text-black outline-none rounded-md px-3 py-2"
               id="password"
               placeholder="Password"
               {...password}
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100 p-2">
+          <button type="submit" className="bg-blue-600  rounded-md w-full p-2">
             Login
           </button>
         </form>

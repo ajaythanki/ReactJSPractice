@@ -9,10 +9,10 @@ const Movies = () => {
     return <p>There are no movies in the database.</p>;
   return (
     <div className="container mt-2 mx-auto">
-      <p>Showing {moviesList?.length} movies in the database.</p>
-      <div className="grid grid-cols-4 gap-2">
+      <p className="text-center text-lg text-white font-medium my-4">Showing {moviesList?.length} movies in the database.</p>
+      <div className="grid grid-cols-4 gap-4">
         {moviesList?.map((movie) => (
-          <div className="grid-flow-col" key={movie._id}>
+          <div className="grid-flow-col" key={"card"+movie._id}>
             <Card movie={movie} />
           </div>
         ))}
