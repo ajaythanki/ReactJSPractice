@@ -57,7 +57,7 @@ const Movie = ({ movie }) => {
               src={movie.poster_path}
               className="movie-image"
               alt={movie.title}
-              style={{ maxHeight: 800, minWidth:300, objectFit: "contain" }}
+              style={{ maxHeight: 800, minWidth: 300, objectFit: "contain" }}
             />
           </div>
         </div>
@@ -125,12 +125,12 @@ const Movie = ({ movie }) => {
             )}
 
             {user.token && (
-              <form onSubmit={handleSubmit} className="flex flex-col text-center">
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col text-center"
+              >
                 <div className="flex flex-col justify-center items-center">
-                  <label
-                    className="text-lg font-medium"
-                    htmlFor="review"
-                  >
+                  <label className="text-lg font-medium" htmlFor="review">
                     Write an Review
                   </label>
                   <textarea
@@ -151,10 +151,13 @@ const Movie = ({ movie }) => {
             )}
           </div>
           <div className="flex flex-col">
-            <h4>Reviews:</h4>
+            {movie.reviews?.length > 1 && <h4>Reviews:</h4>}
             {movie.reviews?.map((review, index) => {
               return (
-                <div key={index} className="flex justify-between p-3 items-center">
+                <div
+                  key={index}
+                  className="flex justify-between p-3 items-center"
+                >
                   <span className="flex items-center">
                     <strong className="text-2xl mr-2">
                       <em>{review.reviewText}</em>
