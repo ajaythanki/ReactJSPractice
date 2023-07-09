@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import loginService from "../services/loginService";
+import authService from "../services/authService";
 import { initializeMovies, setError } from "./movieSlice";
 import { notify } from "./notificationSlice";
 const initialState= {
@@ -33,7 +33,7 @@ export default loginSlice.reducer;
 export const login = (username, password) => {
   return async (dispatch) => {
     try {
-      const res = await loginService.login({username, password});
+      const res = await authService.login({username, password});
       console.log(res);
       if(res.data.success){
         const  user = res.data.data;
@@ -44,11 +44,36 @@ export const login = (username, password) => {
         }
       }else{
         dispatch(setError(true));
-        dispatch(notify(`Error1: ${res.message}`, "Error"));
+        dispatch(notify(`Error: ${res.message}`, "Error"));
       }
     } catch (error) {
       dispatch(setError(true));
-      dispatch(notify(`Error2: ${error}`, "Error"));
+      dispatch(notify(`Error: ${error.response.data.message}`, "Error"));
+    }
+  };
+};
+export const signup = (name, username, password) => {
+  return async (dispatch) => {
+    try {
+      const res = await authService.signup({name, username, password});
+      console.log(res);
+      if(res.data.success){
+        const  user = res.data.data;
+        if(user.token) {
+          console.log(res);
+          dispatch(setUser(user));
+          window.localStorage.setItem("loggedMovieAppUser", JSON.stringify(user));
+          dispatch(initializeMovies())
+        }
+      }else{
+        console.log(res);
+        dispatch(setError(true));
+        dispatch(notify(`Error: ${res.message}`, "Error"));
+      }
+    } catch (error) {
+      console.log(error.response.data.message);
+      dispatch(setError(true));
+      dispatch(notify(`Error: ${error.response.data.message}`, "Error"));
     }
   };
 };

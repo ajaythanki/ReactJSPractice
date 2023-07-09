@@ -126,7 +126,7 @@ const createMovieReview = async (movie, review) => {
     console.log(reviewObj);
     const token = getUserToken();
     if (token) {
-      console.log(token);
+      // console.log(token);
       const response = await axios.post(
         `${REVIEW_API_LINK}movies/reviews`,
         reviewObj,
@@ -151,7 +151,7 @@ const deleteReview = async (movieId) => {
     console.log(movieId);
     const token = getUserToken();
     if (token) {
-      console.log(token);
+      // console.log(token);
       const response = await axios.delete(
         `${REVIEW_API_LINK}movies/reviews/${movieId}`,
         {

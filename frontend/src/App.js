@@ -16,6 +16,7 @@ import {
   Notification,
   Filter,
 } from "./components/";
+import SignUpForm from "./components/SignUpForm";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ const App = () => {
         <Route exact path="/movie/:id" element={<Movie movie={movie} />} />
         <Route exact path="/" element={<Movies />} />
         <Route exact path="/login" element={<LoginForm />} />
+        <Route exact path="/signup" element={<SignUpForm />} />
         <Route exact path="/search/:query" element={<Movies />} />
         <Route exact path="/movies/genre/:genreId" element={<Movies />} />
       </Routes>
