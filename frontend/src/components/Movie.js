@@ -49,20 +49,20 @@ const Movie = ({ movie }) => {
 
   if (!movie) return <p>Something went wrong</p>;
   return (
-    <div className="container pb-10 w-1/2 overflow-hidden mx-auto">
-      <div className="flex text-white mt-3 gap-6">
-        <div className="flex flex-col hover:scale-105 transition-all duration-300">
-          <div className="card">
+    <div className="container pb-10 sm:w-10/12 lg:w-fit mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 text-white mt-3 gap-6 px-3 sm:px-0 w-full">
+        <div className="w-full hover:scale-105 transition-all duration-300">
+          <div className="card w-full">
             <img
               src={movie.poster_path}
               className="movie-image"
               alt={movie.title}
-              style={{ maxHeight: 800, objectFit: "contain" }}
+              style={{ maxHeight: 800, minWidth:300, objectFit: "contain" }}
             />
           </div>
         </div>
-        <div className="flex p-3 flex-col backdrop-blur-2xl">
-          <div className="card p-3">
+        <div className="w-fit md:p-3 flex-col backdrop-blur-2xl">
+          <div className="card md:p-3">
             <h1 className="text-center font-semibold text-5xl">
               {movie.title}
             </h1>
