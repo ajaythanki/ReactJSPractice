@@ -1,10 +1,14 @@
 import React from "react";
 import Card from "./Card";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loadMore } from "../redux/movieSlice";
 
 const Movies = () => {
   const moviesList = useSelector(({ movies }) => movies.moviesList);
-
+  const dispatch = useDispatch();
+  const handleLoadMore = () => {
+    dispatch(loadMore());
+  };
   if (moviesList?.length === 0)
     return <p>There are no movies in the database.</p>;
   return (
@@ -17,6 +21,7 @@ const Movies = () => {
           </div>
         ))}
       </div>
+      <button className="text-lg text-white p-4 mx-auto hover:text-blue-400" onClick={handleLoadMore}>Load More</button>
     </div>
   );
 };

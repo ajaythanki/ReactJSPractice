@@ -269,3 +269,24 @@ export const mapReviewsToMovie = (movie) => {
     }
   };
 };
+
+export const loadMore=()=>{
+  return async (dispatch, getState) => {
+    dispatch(setLoading(true));
+    try {
+      const movies = await movieService.loadMoreMovies();
+      if (movies?.length < 1) {
+        dispatch(setError(true));
+        return;
+      }
+      let moviesList = getState().movies.moviesList;
+      // console.log(state);
+      dispatch(setMovies(moviesList.concat(movies)));
+      dispatch(setLoading(false));
+      dispatch(mapLikesToMovies(movies));
+    } catch (error) {
+      dispatch(setError(true));
+      dispatch(notify(`Error: ${error}`, "Error"));
+    }
+  };
+}

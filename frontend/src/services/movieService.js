@@ -1,7 +1,8 @@
 import axios from "axios";
 //https://api.themoviedb.org/3/movie/550?api_key=077654f998a44d143ff4e1c8d7100fbd
+let page = 1;
 const APILINK =
-  "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=077654f998a44d143ff4e1c8d7100fbd&page=1";
+  `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=077654f998a44d143ff4e1c8d7100fbd&page=`;
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 
 const SEARCHAPI =
@@ -38,7 +39,18 @@ const movieObj = (movie) => {
 
 const getAll = async () => {
   try {
-    const response = await axios.get(APILINK);
+    const response = await axios.get(APILINK+1);
+    const { results } = response.data;
+    const movies = results.map((movie) => movieObj(movie));
+    return movies;
+  } catch (error) {
+    console.log(error);
+  }
+};
+const loadMoreMovies = async () => {
+  try {
+    page++;
+    const response = await axios.get(APILINK+page);
     const { results } = response.data;
     const movies = results.map((movie) => movieObj(movie));
     return movies;
@@ -177,6 +189,7 @@ const movieService = {
   createMovieReview,
   getMovieReviews,
   getMoviesLikes,
-  deleteReview  
+  deleteReview,
+  loadMoreMovies
 };
 export default movieService;
