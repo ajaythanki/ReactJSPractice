@@ -150,7 +150,7 @@ const Movie = ({ movie }) => {
               </form>
             )}
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col overflow-y-scroll no-scrollbar">
             {movie.reviews?.length > 1 && <h4>Reviews:</h4>}
             {movie.reviews?.map((review, index) => {
               return (
