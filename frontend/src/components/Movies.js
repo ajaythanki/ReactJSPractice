@@ -12,7 +12,7 @@ const Movies = () => {
   if (moviesList?.length === 0)
     return <p>There are no movies in the database.</p>;
   return (
-    <div className="container mt-2 mx-auto">
+    <div className="container mt-2 mx-auto text-center">
       <p className="text-center text-lg text-white font-medium my-4">Showing {moviesList?.length} movies in the database.</p>
       <div className="grid grid-col-1 sm:grid-cols-3 sm:gap-0 lg:gap-0 lg:grid-cols-3 xl:grid-cols-4 xl:gap-4">
         {moviesList?.map((movie) => (
