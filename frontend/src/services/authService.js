@@ -1,6 +1,6 @@
 import axios from "axios";
 // const baseUrl = "https://nodejsexercise.akthanki.repl.co/api/login";
-const baseUrl = "http://localhost:8080/api/";
+const baseUrl = "/api/";
 
 const login = async (credentials) => {
   const response = await axios.post(`${baseUrl}login`, credentials);
