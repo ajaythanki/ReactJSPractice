@@ -39,7 +39,7 @@ const options = {
   serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
   socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
   family: 4,
-  dbName: "full_stack_practice_db",
+  dbName: config.MONGO_DB_NAME,
   // strictQuery: true, // Use IPv4, skip trying IPv6
 };
 

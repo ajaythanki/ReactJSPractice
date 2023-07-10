@@ -1,12 +1,11 @@
 import axios from "axios";
-//https://api.themoviedb.org/3/movie/550?api_key=077654f998a44d143ff4e1c8d7100fbd
 let page = 1;
 const APILINK =
-  `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=077654f998a44d143ff4e1c8d7100fbd&page=`;
-const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
+  `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&page=`;
+const IMG_PATH = "https://image.tmdb.org/t/p/w500";
 
 const SEARCHAPI =
-  "https://api.themoviedb.org/3/search/movie?&api_key=077654f998a44d143ff4e1c8d7100fbd&query=";
+  `https://api.themoviedb.org/3/search/movie?&api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&query=`;
 
 const REVIEW_API_LINK = "http://localhost:8080/api/";
 
