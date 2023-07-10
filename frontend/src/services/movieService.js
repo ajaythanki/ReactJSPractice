@@ -7,7 +7,7 @@ const IMG_PATH = "https://image.tmdb.org/t/p/w500";
 const SEARCHAPI =
   `https://api.themoviedb.org/3/search/movie?&api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&query=`;
 
-const REVIEW_API_LINK = "http://localhost:8080/api/";
+const REVIEW_API_LINK = "/api/";
 
 const getUserToken = () => {
   const loggedUserJSON = window.localStorage.getItem("loggedMovieAppUser");
